@@ -1,3 +1,4 @@
+# coding:utf-8
 """
 Django settings for mysite project.
 
@@ -11,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,11 +33,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
+   
+    'django.contrib.admin', 
+     # 身份验证系统
+    'django.contrib.auth', 
+    # 内容类型框架
     'django.contrib.contenttypes',
+    # Session框架
     'django.contrib.sessions',
+    # 消息框架
     'django.contrib.messages',
+    # 静态文件管理框架
     'django.contrib.staticfiles',
 )
 
@@ -77,10 +85,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR+'/db', 'db.sqlite3'),   # 数据库sqlite３文件的绝对地址
+        'NAME': os.path.join(BASE_DIR+'/db', 'db.sqlite3'), # 数据库sqlite３文件的绝对地址
     }
+}
 
-    '''
+"""
     如果是其他数据库，比如mysql,Oracle,则需要用以下格式。
     'default':{
         'ENGINE': 'django.db.backends.mysql' 或者　'django.db.backends.oracle'　或者　 'django.db.backends.postgresql_psycopg2'　等
@@ -89,16 +98,13 @@ DATABASES = {
         'PASSWORD': '数据库密码'
         'HOST': '主机地址'　（如果和你的数据库服务器是同一台物理机器，则此处留空）
     }
-    '''
-}
-
-
+"""
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-　
-TIME_ZONE = 'UTC' # 默认时区为芝加哥时间
+# 默认时区为芝加哥时间
+TIME_ZONE = 'UTC' 
 
 USE_I18N = True
 
