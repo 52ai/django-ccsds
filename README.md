@@ -12,15 +12,14 @@
 
 
  
-##### Django 源码学习１：建立Project和App　
+#### Django 源码学习１：建立Project和App　
 
  django: django-admin.py startproject mysite /  project: mange.py startapp polls
 
-##### Django 源码学习２：一个纯粹由Python编写的轻量Ｗeb服务器　
+#### Django 源码学习２：一个纯粹由Python编写的轻量Ｗeb服务器　
 
  runserver.py
 
- 
 
 
 
