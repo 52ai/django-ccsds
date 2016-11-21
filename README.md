@@ -73,7 +73,7 @@
 	Running migrations:
 	  No migrations to apply.
 
-
+syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存在的表。
 
 
 #### Django 源码学习02：一个纯粹由Python编写的轻量Ｗeb服务器
