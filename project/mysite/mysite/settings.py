@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     # 静态文件管理框架
     'django.contrib.staticfiles',
+    # 手动新增投票系统
+    'polls',
 )
 
 MIDDLEWARE_CLASSES = (

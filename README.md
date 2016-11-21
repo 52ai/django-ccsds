@@ -30,6 +30,52 @@
 	模型是有关你数据的唯一且明确的数据源。 它包含了你所要存储的数据的基本字段和行为。 Django 遵循 DRY 原则 。 目标是为了只在一个地方定义你的数据模型就可从中自动获取数据。
 
 
+那么接下来就是为该应用创建对应的数据库架构（create table statements），为Poll和Choice 对象创建Python访问数据库的API。当然在此之前我们需要再次编辑settings.py文件，在INSTALLED_APPS设置中加入'polls'字符，告诉我们的项目已经安装了polls应用。
+
+	Django 应用是“可插拔的”：你可以在多个项目使用一个应用， 你还可以分发应用， 因为它们没有被捆绑到一个给定的 Django 安装环境中。
+
+运行python manage.py sql polls 生成相关的create table sql语句：
+
+	BEGIN;
+	CREATE TABLE "polls_poll" (
+	    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	    "question" varchar(200) NOT NULL,
+	    "pub_date" datetime NOT NULL
+	)
+	;
+	CREATE TABLE "polls_choice" (
+	    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	    "poll_id" integer NOT NULL REFERENCES "polls_poll" ("id"),
+	    "choice_text" varchar(200) NOT NULL,
+	    "votes" integer NOT NULL
+	)
+	;
+	COMMIT;
+
+注意此时，SQL 语句并没有运行，如果你愿意可以直接复制这个语句在数据库命令行中运行，但是Django提供了更简单的方法来执行此SQL。
+
+运行python manage.py syncdb在数据库中创建模型对应的表。syncdb 命令会给在 INSTALLED_APPS 中有但数据库中没有对应表的应用执行 sqlall 操作。
+
+
+	$ python manage.py syncdb 
+	/usr/local/lib/python2.7/dist-packages/Django-1.8.16-py2.7.egg/django/core/management/commands/syncdb.py:24: RemovedInDjango19Warning: The syncdb command will be removed in Django 1.9
+	  warnings.warn("The syncdb command will be removed in Django 1.9", RemovedInDjango19Warning)
+
+	Operations to perform:
+	  Synchronize unmigrated apps: staticfiles, polls, messages
+	  Apply all migrations: admin, contenttypes, auth, sessions
+	Synchronizing apps without migrations:
+	  Creating tables...
+	    Creating table polls_poll
+	    Creating table polls_choice
+	    Running deferred SQL...
+	  Installing custom SQL...
+	Running migrations:
+	  No migrations to apply.
+
+
+
+
 #### Django 源码学习02：一个纯粹由Python编写的轻量Ｗeb服务器
 
  	runserver.py
