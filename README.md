@@ -75,7 +75,178 @@
 
 syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存在的表。
 
-* 玩转API
+玩转API
+
+	$ python manage.py shell   
+	/usr/local/lib/python2.7/dist-packages/Django-1.8.16-py2.7.egg/django/db/backends/sqlite3/base.py:57: RuntimeWarning: SQLite received a naive datetime (2016-11-21 06:07:57.196378) while time zone support is active.
+	  RuntimeWarning)
+
+	Python 2.7.12 (default, Jul  1 2016, 15:12:24) 
+	Type "copyright", "credits" or "license" for more information.
+
+	IPython 5.1.0 -- An enhanced Interactive Python.
+	?         -> Introduction and overview of IPython's features.
+	%quickref -> Quick reference.
+	help      -> Python's own help system.
+	object?   -> Details about 'object', use 'object??' for extra details.
+
+	In [1]: from polls.models import Poll, Choice
+
+	In [2]: Poll.objects.all()
+	Out[2]: []
+
+	In [3]: from django.utils import timezone
+
+	In [4]: p = Poll(question="How to read django source code?", pub_date=timezone.n
+	   ...: ow())
+
+	In [5]: p.save
+	Out[5]: <bound method Poll.save of <Poll: Poll object>>
+
+	In [6]: p.save()
+
+	In [7]: p.id
+	Out[7]: 1
+
+	In [8]: p.question
+	Out[8]: 'How to read django source code?'
+
+	In [9]: p.pub_date
+	Out[9]: datetime.datetime(2016, 11, 21, 6, 13, 10, 788532, tzinfo=<UTC>)
+
+	In [10]: p.question - 'How to read python web framework django source code?'
+	---------------------------------------------------------------------------
+	TypeError                                 Traceback (most recent call last)
+	<ipython-input-10-8a1df3b60011> in <module>()
+	----> 1 p.question - 'How to read python web framework django source code?'
+
+	TypeError: unsupported operand type(s) for -: 'str' and 'str'
+
+	In [11]: p.question = 'How to read python web framework django source code?'
+
+	In [12]: p.save()
+
+	In [13]: Poll.objects.all()
+	Out[13]: [<Poll: Poll object>]
+
+请注意，第13个命令，objects.all()用以显示数据库中所有的polls，但是其输出这样显示对象是毫无意义的，因此我们需要编辑polls模型并且给Poll和Choice都添加一个unicode()方法来修正此错误。给你的模型添加 unicode() 方法是很重要的， 不仅是让你在命令行下有明确提示， 而且在Django 自动生成的管理界面中也会使用到对象的呈现。
+
+编辑好polls模型，重新生成sql语句，并创建表，然后进入python django shell 使用Poll.objects.all()方法：
+
+	$ python manage.py shell
+	/usr/local/lib/python2.7/dist-packages/Django-1.8.16-py2.7.egg/django/db/backends/sqlite3/base.py:57: RuntimeWarning: SQLite received a naive datetime (2016-11-21 06:23:18.920618) while time zone support is active.
+	  RuntimeWarning)
+
+	Python 2.7.12 (default, Jul  1 2016, 15:12:24) 
+	Type "copyright", "credits" or "license" for more information.
+
+	IPython 5.1.0 -- An enhanced Interactive Python.
+	?         -> Introduction and overview of IPython's features.
+	%quickref -> Quick reference.
+	help      -> Python's own help system.
+	object?   -> Details about 'object', use 'object??' for extra details.
+
+	In [1]: Poll.objects.all()
+	---------------------------------------------------------------------------
+	NameError                                 Traceback (most recent call last)
+	<ipython-input-1-de6395e9cef3> in <module>()
+	----> 1 Poll.objects.all()
+
+	NameError: name 'Poll' is not defined
+
+	In [2]: ls
+	db/  manage.py*  mysite/  polls/
+
+	In [3]: from polls.models import Poll, Choice
+
+	In [4]: Poll.objects.all()
+	Out[4]: [<Poll: How to read python web framework django source code?>]
+
+	In [5]: 
+
+上面都是些普通的python方法，我们还可以自己添加自定义方法：
+
+	import datetime
+	from django.utils import timezone
+	# ...
+	class Poll(models.Model):
+	# ...
+		def was_published_recently(self):
+			return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+
+还可以这么玩：
+
+	In [13]: Poll.objects.get(id=1)
+	Out[13]: <Poll: How to read python web framework django source code?>
+
+	In [14]: Poll.objects.get(pk=1)
+	Out[14]: <Poll: How to read python web framework django source code?>
+
+	In [15]: p = Poll.objects.get(pk=1)
+
+	In [16]: p.was_published_recently
+	Out[16]: <bound method Poll.was_published_recently of <Poll: How to read python web framework django source code?>>
+
+	In [17]: p.was_published_recently()
+	Out[17]: True
+
+	In [18]: p.choice_set.all()
+	Out[18]: []
+
+
+这么玩：
+
+	python manage.py shell
+	/usr/local/lib/python2.7/dist-packages/Django-1.8.16-py2.7.egg/django/db/backends/sqlite3/base.py:57: RuntimeWarning: SQLite received a naive datetime (2016-11-21 06:41:28.459506) while time zone support is active.
+	  RuntimeWarning)
+
+	Python 2.7.12 (default, Jul  1 2016, 15:12:24) 
+	Type "copyright", "credits" or "license" for more information.
+
+	IPython 5.1.0 -- An enhanced Interactive Python.
+	?         -> Introduction and overview of IPython's features.
+	%quickref -> Quick reference.
+	help      -> Python's own help system.
+	object?   -> Details about 'object', use 'object??' for extra details.
+
+	In [1]: from polls.models import Poll, Choice
+
+	In [2]: p.choice_set.create(choice_text='Not much', votes=0)
+	---------------------------------------------------------------------------
+	NameError                                 Traceback (most recent call last)
+	<ipython-input-2-8931617ca4b9> in <module>()
+	----> 1 p.choice_set.create(choice_text='Not much', votes=0)
+
+	NameError: name 'p' is not defined
+
+	In [3]: p = Poll.objects.get(id=1)
+
+	In [4]: p.choice_set.create(choice_text='Not much', votes=0)
+	Out[4]: <Choice: Not much>
+
+	In [5]: p.choice_set.create(choice_text='The sky', votes=0)
+	Out[5]: <Choice: The sky>
+
+	In [6]: p.choice_set.create(choice_text='Just hacking again', votes=0)
+	Out[6]: <Choice: Just hacking again>
+
+	....
+
+	In [8]: c = p.choice_set.get(id =3)
+
+	In [9]: c.poll
+	Out[9]: <Poll: How to read python web framework django source code?>
+
+
+还能玩删除：
+
+	In [11]: c = p.choice_set.filter(choice_text__startswith='Just ')
+
+	In [12]: c.delete()
+
+
+
 
 
 #### Django 源码学习02：一个纯粹由Python编写的轻量Ｗeb服务器
