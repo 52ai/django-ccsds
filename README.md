@@ -21,7 +21,7 @@
 ##### 开始啦！从建立第一个Project 开始说起
 
  	django: django-admin.py startproject mysite
- 	project: mange.py startapp polls1
+ 	project: manage.py startapp polls
 
 
 项目（Project） Vs 应用（Apps）
@@ -102,8 +102,7 @@ syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存
 
 	In [3]: from django.utils import timezone
 
-	In [4]: p = Poll(question="How to read django source code?", pub_date=timezone.n
-	   ...: ow())
+	In [4]: p = Poll(question="How to read django source code?", pub_date=timezone.now())
 
 	In [5]: p.save
 	Out[5]: <bound method Poll.save of <Poll: Poll object>>
