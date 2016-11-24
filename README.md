@@ -252,7 +252,20 @@ syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存
 
 ##### 管理你的站点
 
+首先在settings.py中的INSTALLED_APPS 设置安装admin新应用，然后启动开发服务器。
 
+python manage.py runserver
+
+但是如此无法编辑Poll应用，这个时候我们需要告诉管理网站Poll对象要有一个管理页面，在polls页面下创建一个名为admin.py的文件，并添加如下内容：
+
+	from django.contrib import admin
+	from polls.models import Poll
+	# Register your models here.
+	admin.site.register(Poll)
+
+然后再重启开发服务器。
+
+> 通常情况下， 你每次修改过一个文件后开发 服务器都会自动载入， 但是创建一个新文件却不会触发自动载入的逻辑。
 
 
 
