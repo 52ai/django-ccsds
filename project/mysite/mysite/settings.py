@@ -17,6 +17,13 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+'''
+TEMPLATE_DIRS = (
+        os.path.join(BASE_DIR+ '/templates/'),
+    )
+print TEMPLATE_DIRS
+print os.path.join(BASE_DIR+'/db', 'db.sqlite3')
+'''
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -66,6 +73,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
+        # 'DIRS':  os.path.join(BASE_DIR, 'templates').replace('\\', '/'),
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,8 +113,9 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-# 默认时区为芝加哥时间
-TIME_ZONE = 'UTC' 
+# 默认时区为芝加哥时，下面修改为上海时间
+# TIME_ZONE = 'UTC' 
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -119,3 +128,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+

@@ -267,6 +267,11 @@ python manage.py runserver
 
 > 通常情况下， 你每次修改过一个文件后开发 服务器都会自动载入， 但是创建一个新文件却不会触发自动载入的逻辑。
 
+此外记得而改下时区，默认为美国时间，改为中国时间。
+
+	# 默认时区为芝加哥时，下面修改为上海时间
+	# TIME_ZONE = 'UTC' 
+	TIME_ZONE = 'Asia/Shanghai'
 
 
 #### Django 源码学习02：一个纯粹由Python编写的轻量Ｗeb服务器
