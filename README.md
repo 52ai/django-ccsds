@@ -303,9 +303,9 @@ python manage.py runserver
 
 #### Django 源码学习09：Password 的生成和验证
 
-#### Django 源码学习10：Template(模板)
+#### Django 源码学习10：Template (模板)
 
-#### Django 源码学习11：Form(表单)类
+#### Django 源码学习11：Form (表单)类
 
 #### Django 源码学习12：Django安全机制
 
