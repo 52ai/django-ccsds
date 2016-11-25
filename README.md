@@ -13,7 +13,10 @@
 
 	如有什么不妥的地方，欢迎批评指正，同时也非常欢迎您加入进来，一起阅读源码，一起讨论，一起进步！--- Wayne 2016.11.17
 
+#### Django 安装
 
+这里采取离线安装方式，便于多环境离线部署。
+下载离线安装包：[How to get Django](https://www.djangoproject.com/download/ "下载")
  
 #### Django 源码学习01：建立Project和App
 
@@ -303,9 +306,9 @@ python manage.py runserver
 
 #### Django 源码学习09：Password 的生成和验证
 
-#### Django 源码学习10：Template(模板)
+#### Django 源码学习10：Template (模板)
 
-#### Django 源码学习11：Form(表单)类
+#### Django 源码学习11：Form (表单)类
 
 #### Django 源码学习12：Django安全机制
 
