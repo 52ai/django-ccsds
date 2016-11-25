@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 '''
 TEMPLATE_DIRS = (
-        os.path.join(BASE_DIR+ '/templates/'),
+        os.path.join(BASE_DIR+ 'templates').replace('\\','/'),
     )
 print TEMPLATE_DIRS
 print os.path.join(BASE_DIR+'/db', 'db.sqlite3')
