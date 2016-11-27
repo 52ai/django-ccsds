@@ -5,6 +5,7 @@ from django.test import TestCase
 
 
 from polls.models import Poll
+from django.core.urlresolvers import reverse
 # Create your tests here.
 
 class PollMethodTests(TestCase):
@@ -30,3 +31,4 @@ class PollMethodTests(TestCase):
 		time = timezone.now() - datetime.timedelta(days=1)
 		old_poll = Poll(pub_date=time)
 		self.assertEqual(old_poll.was_published_recently(), True)
+
