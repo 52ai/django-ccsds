@@ -66,9 +66,6 @@
 
 
 	$ python manage.py syncdb 
-	/usr/local/lib/python2.7/dist-packages/Django-1.8.16-py2.7.egg/django/core/management/commands/syncdb.py:24: RemovedInDjango19Warning: The syncdb command will be removed in Django 1.9
-	  warnings.warn("The syncdb command will be removed in Django 1.9", RemovedInDjango19Warning)
-
 	Operations to perform:
 	  Synchronize unmigrated apps: staticfiles, polls, messages
 	  Apply all migrations: admin, contenttypes, auth, sessions
@@ -118,14 +115,6 @@ syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存
 	In [9]: p.pub_date
 	Out[9]: datetime.datetime(2016, 11, 21, 6, 13, 10, 788532, tzinfo=<UTC>)
 
-	In [10]: p.question - 'How to read python web framework django source code?'
-	---------------------------------------------------------------------------
-	TypeError                                 Traceback (most recent call last)
-	<ipython-input-10-8a1df3b60011> in <module>()
-	----> 1 p.question - 'How to read python web framework django source code?'
-
-	TypeError: unsupported operand type(s) for -: 'str' and 'str'
-
 	In [11]: p.question = 'How to read python web framework django source code?'
 
 	In [12]: p.save()
@@ -138,22 +127,8 @@ syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存
 编辑好polls模型，重新生成sql语句，并创建表，然后进入python django shell 使用Poll.objects.all()方法：
 
 	$ python manage.py shell
-		Python 2.7.12 (default, Jul  1 2016, 15:12:24) 
-	Type "copyright", "credits" or "license" for more information.
 
-	IPython 5.1.0 -- An enhanced Interactive Python.
-	?         -> Introduction and overview of IPython's features.
-	%quickref -> Quick reference.
-	help      -> Python's own help system.
-	object?   -> Details about 'object', use 'object??' for extra details.
 
-	In [1]: Poll.objects.all()
-	---------------------------------------------------------------------------
-	NameError                                 Traceback (most recent call last)
-	<ipython-input-1-de6395e9cef3> in <module>()
-	----> 1 Poll.objects.all()
-
-	NameError: name 'Poll' is not defined
 
 	In [2]: ls
 	db/  manage.py*  mysite/  polls/
@@ -210,14 +185,6 @@ syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存
 	object?   -> Details about 'object', use 'object??' for extra details.
 
 	In [1]: from polls.models import Poll, Choice
-
-	In [2]: p.choice_set.create(choice_text='Not much', votes=0)
-	---------------------------------------------------------------------------
-	NameError                                 Traceback (most recent call last)
-	<ipython-input-2-8931617ca4b9> in <module>()
-	----> 1 p.choice_set.create(choice_text='Not much', votes=0)
-
-	NameError: name 'p' is not defined
 
 	In [3]: p = Poll.objects.get(id=1)
 
