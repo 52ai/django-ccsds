@@ -283,6 +283,11 @@ python manage.py runserver
 
 URL名称的命名空间，修改root URLconf配置中添加命名空间。
 
+为什么要重构代码？
+
+>通常情况下，当你编写一个Django应用时，你会评估下通用视图是否适合解决你的问题，如果是适合你就应该一开始就使用它，而不是进行到一半才重构你的代码。
+
+
 #### Django 源码学习02：一个纯粹由Python编写的轻量Ｗeb服务器
 
  	runserver.py
