@@ -86,9 +86,6 @@ syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存
 玩转API
 
 	$ python manage.py shell   
-	/usr/local/lib/python2.7/dist-packages/Django-1.8.16-py2.7.egg/django/db/backends/sqlite3/base.py:57: RuntimeWarning: SQLite received a naive datetime (2016-11-21 06:07:57.196378) while time zone support is active.
-	  RuntimeWarning)
-
 	Python 2.7.12 (default, Jul  1 2016, 15:12:24) 
 	Type "copyright", "credits" or "license" for more information.
 
@@ -141,10 +138,7 @@ syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存
 编辑好polls模型，重新生成sql语句，并创建表，然后进入python django shell 使用Poll.objects.all()方法：
 
 	$ python manage.py shell
-	/usr/local/lib/python2.7/dist-packages/Django-1.8.16-py2.7.egg/django/db/backends/sqlite3/base.py:57: RuntimeWarning: SQLite received a naive datetime (2016-11-21 06:23:18.920618) while time zone support is active.
-	  RuntimeWarning)
-
-	Python 2.7.12 (default, Jul  1 2016, 15:12:24) 
+		Python 2.7.12 (default, Jul  1 2016, 15:12:24) 
 	Type "copyright", "credits" or "license" for more information.
 
 	IPython 5.1.0 -- An enhanced Interactive Python.
@@ -205,8 +199,6 @@ syncdb 命令只要你喜欢就可以任意调用， 并且它仅会创建不存
 这么玩：
 
 	python manage.py shell
-	/usr/local/lib/python2.7/dist-packages/Django-1.8.16-py2.7.egg/django/db/backends/sqlite3/base.py:57: RuntimeWarning: SQLite received a naive datetime (2016-11-21 06:41:28.459506) while time zone support is active.
-	  RuntimeWarning)
 
 	Python 2.7.12 (default, Jul  1 2016, 15:12:24) 
 	Type "copyright", "credits" or "license" for more information.
@@ -287,6 +279,9 @@ URL名称的命名空间，修改root URLconf配置中添加命名空间。
 
 >通常情况下，当你编写一个Django应用时，你会评估下通用视图是否适合解决你的问题，如果是适合你就应该一开始就使用它，而不是进行到一半才重构你的代码。
 
+##### 自动化测试你的应用
+
+>
 
 #### Django 源码学习02：一个纯粹由Python编写的轻量Ｗeb服务器
 
