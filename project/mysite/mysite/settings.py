@@ -67,7 +67,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'mysite.urls' # 访问页面时，首先加载mysite.urls模块
 
 TEMPLATES = [
     {

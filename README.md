@@ -288,7 +288,7 @@ python manage.py runserver
 #### Django 源码学习03：基于正则表达式的URL分派
 
 
-#### Django 源码学习04：中间件(Middleware)支持
+#### Django 源码学习04：中间件 (Middleware)支持
 
 	允许对请求处理的各个阶段进行干涉
 
