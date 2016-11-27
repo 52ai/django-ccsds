@@ -3,13 +3,15 @@ from django.conf.urls import patterns, url
 from polls import views
 from django.views.generic import DetailView, ListView # 采用通用视图
 from polls.models import Poll
-
+from django.utils import timezone
 urlpatterns = patterns('',
 	# ex:/polls/
 	# url(r'^$', views.index, name='index'),
 	url(r'^$', 
 		ListView.as_view(
-			queryset = Poll.objects.order_by('-pub_date')[:5],
+			queryset = Poll.objects.filter(
+					pub_date__lte=timezone.now()
+				).order_by('-pub_date')[:5],
 			context_object_name = 'latest_poll_list',
 			template_name = 'polls/index.html',
 			),

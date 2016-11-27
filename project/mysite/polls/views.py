@@ -4,6 +4,8 @@ from polls.models import Poll, Choice
 from django.template import Context, loader
 from django.http import Http404
 from django.core.urlresolvers import reverse
+from django.utils import timezone
+from django.views.generic import DetailView, ListView
 
 # Create your views here.
 
@@ -48,4 +50,16 @@ def vote(request, poll_id):
 		selected_choice.votes += 1
 		selected_choice.save()
 		return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
-
+'''
+class IndexView(ListView):
+	template_name = 'polls/index.html'
+	context_object_name = 'latest_poll_list'
+	def get_queryset(self):
+		"""
+		return the last five published poll.
+		not including those set to published in the future
+		"""
+		return Poll.objects.filter(
+				pub_date__lte=timezone.now()
+			).order_by('-pub_date')[:5]
+'''
