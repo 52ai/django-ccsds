@@ -29,6 +29,6 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^polls/', include('polls.urls')),
+    url(r'^polls/', include('polls.urls', namespace="polls")), # 定义URL 名称的命名空间便于区分多个应用中重名的视图
 
 ]

@@ -32,7 +32,7 @@ print os.path.join(BASE_DIR+'/db', 'db.sqlite3')
 SECRET_KEY = '_(s0l@@d4yanq8$uxu)f+*tws9vv-$2r(ih^it0bp!to8r673e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # 你的404视图永远不会被使用，因为需要显示跟踪信息
 
 ALLOWED_HOSTS = []
 

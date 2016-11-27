@@ -281,6 +281,8 @@ python manage.py runserver
 > 在Django应用程序中，视图是一“类”具有特定功能和模板的网页。Django是通过‘URLconfs’从URL获取到视图的。而URLconf是将URL模式（由正则表达式来描述）映射到视图的一种配置。
 
 
+URL名称的命名空间，修改root URLconf配置中添加命名空间。
+
 #### Django 源码学习02：一个纯粹由Python编写的轻量Ｗeb服务器
 
  	runserver.py
